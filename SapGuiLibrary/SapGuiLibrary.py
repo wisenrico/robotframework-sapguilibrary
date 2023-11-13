@@ -454,6 +454,24 @@ class SapGuiLibrary:
         # run explicit wait last
         time.sleep(self.explicit_wait)
 
+    def press_f1(self, element_id):
+        """Calls the PressF1 function on the current element."""
+        try:
+            self.session.findById(element_id).pressF1()
+        except com_error:
+            self.take_screenshot()
+            message = "Cannot press F1 on the given element."
+            raise ValueError(message)
+    
+    def press_f4(self, element_id):
+        """Calls the PressF4 function on the current element."""
+        try:
+            self.session.findById(element_id).pressF4()
+        except com_error:
+            self.take_screenshot()
+            message = "Cannot press F4 on the given element."
+            raise ValueError(message)
+
     def run_transaction(self, transaction):
         """Runs a Sap transaction. An error is given when an unknown transaction is specified.
         """
